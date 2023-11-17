@@ -40,7 +40,7 @@ initial begin
   // iterate through all 22 bits in the register.
   for (i=0; i < 22; i=i+1) begin
       // write some data to address 0x0.
-      WriteData  <= 16'he427;
+      WriteData  <= 16'b0011 0101 1111 0000;
       Address    <= 0;  
       MemRead    <= 1'b0;
       MemWrite   <= 1'b1;

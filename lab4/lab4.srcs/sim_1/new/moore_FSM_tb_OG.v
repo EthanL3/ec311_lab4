@@ -1,14 +1,15 @@
+// Original version of moore fsm for the 1st problem. We modify it for the debouncer.
+
+
 `timescale 1ns / 1ps
 
-module tb_moore_FSM;
+module tb_moore_FSM_OG;
 
     reg clk, reset, read;
     reg [7:0] in;
     wire out;
     
- 
-    
-    moore_FSM dut (
+    moore_FSM_OG dut (
         .out(out),
         .clk(clk),
         .reset(reset),
@@ -59,10 +60,10 @@ module tb_moore_FSM;
         #10;
         $display("State: S0 Idle State, out = %b", out);
         #10;
+        
         $finish;
     end
 
-    always #5 clk = ~clk; // Toggle clock every 5 ns
+    always #5 clk = ~clk; // Toggle clock every 5 time units
 
 endmodule
-

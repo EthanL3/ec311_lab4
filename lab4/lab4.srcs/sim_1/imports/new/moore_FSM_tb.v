@@ -5,9 +5,7 @@ module tb_moore_FSM;
     reg clk, reset, read;
     reg [7:0] in;
     wire out;
-    
- 
-    
+   
     moore_FSM dut (
         .out(out),
         .clk(clk),
@@ -17,7 +15,6 @@ module tb_moore_FSM;
     );
 
     initial begin
-        // Initialize inputs
         clk = 0;
         reset = 1;
         read = 0;
@@ -59,13 +56,11 @@ module tb_moore_FSM;
         $display("State transition: S3 -> S0");
         #10;
         $display("State: S0 Idle State, out = %b", out);
-        // Reset and end simulation
         #10;
-        
         $finish;
     end
 
-    always #5 clk = ~clk; // Toggle clock every 5 time units
+    always #5 clk = ~clk; // Toggle clock every 5 ns
 
 endmodule
 

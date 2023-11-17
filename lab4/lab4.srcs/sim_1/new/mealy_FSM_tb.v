@@ -12,11 +12,9 @@ module mealy_FSM_tb;
     );
     
     initial begin
-        // Initialize inputs
         clk = 0;
         in = 1;
         
-        //S0 to S1
         #10;
         $display("Transition: S0 -> S1, out = %b", out);
         
@@ -40,5 +38,5 @@ module mealy_FSM_tb;
         $finish;
     end
 
-    always #10 clk = ~clk; // Toggle clock every 5 time units
+    always #10 clk = ~clk;
 endmodule

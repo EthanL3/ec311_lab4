@@ -1,13 +1,15 @@
 // this file has 3 modules: RCA (parameterized), full adder, half adder
+// we commented out the full and half adders and implemented them in a separate file but left them here for reference
 
-module ripple_carry_adder #(parameter n = 4)(
+module ripple_carry_adder #(parameter n = 32)(
     input cin,
-    input [n-1:0] a,
-    input [n-1:0] b,
+    input [31:0] a,
+    input [31:0] b,
     output [n:0] sum,
     output cout
 );
     wire [n:0] carry; //carry wire
+    wire [n:0] sum_o;
     assign carry[0] = cin;
 
     generate
@@ -17,16 +19,19 @@ module ripple_carry_adder #(parameter n = 4)(
                 .a(a[i]),
                 .b(b[i]),
                 .c_in(carry[i]),
-                .sum(sum[i]),
+                .sum(sum_o[i]),
                 .cout(carry[i+1])
             );
         end
     endgenerate
 
     assign cout=carry[n]; // carry[n] is cout
+    assign sum = sum_o;
+    assign sum[32] = carry[n];
 endmodule
 
-
+/*
+//full adder and half unmodified from previous labs
 module full_adder(
     input c_in,
     input a,
@@ -74,3 +79,4 @@ module half_adder(
     assign c_out = a && b;
 endmodule
 
+*/
